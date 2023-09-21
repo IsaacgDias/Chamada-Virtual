@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Cadastrar Turma</title>
+</head>
+<body bgcolor="orange">
+    
+    <div class="a">
+        <form class="container" method="post">
+            <div class="input-field">
+            Nome: <input type="text" name="nome"/>
+            </div>
+            <div class="input-field">
+            Carga Horária: <input type="text" name="cargaHoraria"/>
+            </div>
+            <div class="input-field">
+            Sala: <input type="text" name="sala"/>
+        </div>
+        <div class="input-field">
+            Turno: <input type="text" name="turno"/>
+        </div>
+        <div class="input-field">
+            Data de Início: <input type="text" name="dataInicio"/>
+        </div>
+        <div class="input-field">
+            Data de Término: <input type="text" name="dataTermino"/>
+        </div>
+            <div class="input-field">
+            Horário: <select name="horario">
+                <option value="" selected="selected">--Seleciona--</option>
+                <option value="7:00 ás 11:30">7:00 ás 11:30</option>
+                <option value="13:00 ás 17:30">13:00 ás 17:30</option>
+                <option value="18:00 ás 22:30">18:00 ás 22:30 </option>
+            
+              </select>
+            </div>
+           
+              <button type="submit" name="enviar">Criar</button>
+    </div>
+
+</body>
+</html>

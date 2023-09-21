@@ -1,0 +1,62 @@
+.container {
+    position: relative;
+}
+
+
+.tabelaTurma {
+    width: 900px;
+    margin: auto;
+    border-collapse: collapse;
+
+}
+
+.tabelaTurma th,
+.tabelaTurma td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.tabelaTurma th {
+    background-color: #f2f2f2;
+}
+
+.tabelaTurma tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tabelaTurma tr:hover {
+    background-color: #ddd;
+}
+
+.voltar {
+    width: 60px;
+    height: 50px;
+    border: 1px solid #cacaca;
+    border-radius: 2px;
+    margin: auto;
+    margin-left: 500px;
+    font-size: 20px;
+    margin-top: 20px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.voltar:hover {
+    background-color: #ddd;
+}
+
+.voltar>a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin-top: 250px;
+}
+
+button {
+    width: 100%;
+}

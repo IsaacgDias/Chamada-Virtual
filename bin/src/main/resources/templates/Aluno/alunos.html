@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+</head>
+<body>
+    <ul>
+    
+        <li><a href="/">Menu</a></li>
+       
+    </ul>
+<table class="container tabelaAluno">
+
+		<thead>
+			<tr>
+			<th>N°</th>
+			<th>Nome</th>
+			<th>Editar</th>
+			<th>Deletar</th>
+			
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="aluno : ${alunos}">
+				<td><span th:text="${aluno.id}"></span></td>
+				<td><span th:text="${aluno.nome}"></span></td>
+				
+			</tr>
+		</tbody>
+		
+	</table>
+
+
+</body>
+</html>

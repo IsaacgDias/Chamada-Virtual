@@ -1,0 +1,56 @@
+.container {
+    position: relative;
+}
+
+
+.tabelaAluno {
+    width: 900px;
+    margin: auto;
+    border-collapse: collapse;
+
+}
+
+.tabelaAluno th,
+.tabelaAluno td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.tabelaAluno th {
+    background-color: #f2f2f2;
+}
+
+.tabelaAluno tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tabelaAluno tr:hover {
+    background-color: #ddd;
+}
+
+.voltar {
+    width: 60px;
+    height: 50px;
+    border: 1px solid #cacaca;
+    border-radius: 2px;
+    margin: auto;
+    margin-left: 500px;
+    font-size: 20px;
+    margin-top: 20px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.voltar:hover {
+    background-color: #ddd;
+}
+
+.voltar>a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    width: 100%;
+}

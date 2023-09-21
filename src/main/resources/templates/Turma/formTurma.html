@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="paginas.css">
+    <title>Cadastrar Turma</title>
+</head>
+<body>
+<header>
+    <a href="/"><img src="img/img_logo.jpg" alt="" width="100px" height="100px"></a>
+</header>
+<nav>
+    <ul>
+        <li><a href="/cadastrarAluno">Cadastrar Aluno</a></li>
+        <li><a href="#" class="active">Cadastrar Turma</a></li>
+        <li><a href="#">Dar Presença</a></li>
+        <li><a href="/listaTurmas">Lista de Turmas</a></li>
+        <li><a href="/listaAlunos">Lista de Alunos</a></li>
+    </ul>
+</nav>
+<div class="a2">
+    <h1>Cadastro de Turma</h1>
+    <form class="container" method="post">
+        <div class="input-field">
+            <input type="text" name="nome" placeholder="Nome"/>
+        </div>
+        <div class="input-field">
+            <input type="text" name="cargaHoraria" placeholder="Carga Horária"/>
+        </div>
+        <div class="input-field">
+            <input type="text" name="sala" placeholder="Sala"/>
+        </div>
+        <div class="input-field">
+            <input type="text" name="turno" placeholder="Turno"/>
+        </div>
+        <div class="input-field">
+            <input type="text" name="dataInicio" placeholder="Data de Início"/>
+        </div>
+        <div class="input-field">
+            <input type="text" name="dataTermino" placeholder="Data de Término"/>
+        </div>
+        <div class="hora">
+            Horário: <select name="horario">
+            <option value="" selected="selected">--Seleciona--</option>
+            <option value="7:00 ás 11:30">7:00 ás 11:30</option>
+            <option value="13:00 ás 17:30">13:00 ás 17:30</option>
+            <option value="18:00 ás 22:30">18:00 ás 22:30 </option>
+
+        </select>
+        </div>
+
+        <button class=button type="submit" name="enviar">Adicionar Turma</button>
+</div>
+
+</body>
+</html>

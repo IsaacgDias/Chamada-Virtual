@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+</head>
+<body>
+    <ul>
+    
+        <li><a href="/">Menu</a></li>
+       
+    </ul>
+<table class="container tabelaTurma">
+
+		<thead>
+			<tr>
+			<th>Nome</th>	
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="turma : ${turmas}">
+				<td><span th:text="${turma.nome}"></span></td>
+				
+			</tr>
+		</tbody>
+		
+	</table>
+
+
+</body>
+</html>
