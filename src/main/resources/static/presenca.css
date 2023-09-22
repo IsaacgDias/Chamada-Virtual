@@ -1,0 +1,84 @@
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+.a {
+    background-color: whitesmoke;
+    margin: auto;
+    margin-top: 15vw;
+    border: 0px solid #000;
+    border-radius: 30px;
+    width: 500px;
+    height: 200px;
+    box-shadow: 0 0 20px 0 darkgray;
+
+}
+.a2 {
+    background-color: whitesmoke;
+    margin: auto;
+    margin-top: 13vw;
+    border: 0px solid #000;
+    border-radius: 30px;
+    width: 500px;
+    height: 500px;
+    box-shadow: 0 0 20px 0 darkgray;
+
+}
+form {
+    margin-top: 10px;
+    text-align: center;
+
+}
+
+
+input{
+    margin-top: 10px;
+    font-size: 19px;
+    width: 250px;
+    height: 29px;
+    padding-left: 15px;
+    background-color: #ffffffa7;
+    color: #242323;
+    border: 2px solid #0e0e0e;
+}
+
+::placeholder {
+    font-size: 16px;
+}
+button {
+    margin-top: 30px;
+    width: 200px;
+    height: 50px;
+    background-color:rgba(92, 94, 93);
+    border-radius: 30px;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 0px solid #0e0e0e;
+    color: #fff;
+}
+
+
+button:hover {
+    background-color:rgba(112, 115, 114);
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+}
+
+select:hover {
+    border-color: #999;
+}
+label {
+    font-size: 20px;
+}
+.hora {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

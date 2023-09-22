@@ -1,10 +1,8 @@
 package com.ch.chamada.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Aluno {
@@ -17,6 +15,8 @@ public class Aluno {
 	
 	private String presenca;
 
+	@ManyToMany
+	private List<Turma> turma;
 	public Long getId() {
 		return id;
 	}
@@ -40,7 +40,12 @@ public class Aluno {
 	public void setPresenca(String presenca) {
 		this.presenca = presenca;
 	}
-	
-	
-	
+
+	public List<Turma> getTurma() {
+		return turma;
+	}
+	public void setTurma(List<Turma> turma) {
+		this.turma = turma;
+	}
+
 }
