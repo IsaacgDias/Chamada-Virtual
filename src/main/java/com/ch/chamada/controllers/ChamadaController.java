@@ -4,10 +4,7 @@ import com.ch.chamada.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ch.chamada.models.Aluno;
@@ -16,10 +13,9 @@ import com.ch.chamada.repository.AlunoRepository;
 import com.ch.chamada.repository.TurmaRepository;
 
 
-import jakarta.validation.Valid;
-
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class ChamadaController {
@@ -77,7 +73,29 @@ public class ChamadaController {
 		return "redirect:/";
 	}
 
-    
+	@GetMapping("/formEditarAluno")
+	public String formEditarAluno(@RequestParam Long id, Model model) {
+		System.out.println("ID recebido: " + id);
+		Aluno aluno = ar.findById(id).orElse(null);
+		System.out.println("ESSE ALUNO: " + aluno.getId() + "aa" + aluno.getNome());
+		model.addAttribute("aluno", aluno);
+
+		return "Aluno/editAluno";
+	}
+
+	@PutMapping("/editarAluno")
+	public String editarAluno(Aluno aluno) {
+		ar.save(aluno);
+
+		return "redirect:/listaAlunos";
+	}
+
+
+	@GetMapping("/deletarAluno")
+	public String deletarAlunoPorId(@RequestParam Long id) {
+		alunoService.deletarAlunoPorId(id);
+		return "redirect:/";
+	}
 
 	@GetMapping("/listaAlunos")
 	public ModelAndView listaAlunos() {

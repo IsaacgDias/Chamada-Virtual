@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="paginas.css">
+    <title>Cadastrar Aluno</title>
+</head>
+<body>
+<header>
+    <a href="/"><img src="img/img_logo.jpg" alt="" width="100px" height="100px"></a>
+</header>
+<nav>
+    <ul>
+        <li><a href="#" class="active">Cadastrar Aluno</a></li>
+        <li><a href="/cadastrarTurma">Cadastrar Turma</a></li>
+        <li><a href="#">Dar Presença</a></li>
+        <li><a href="/listaTurmas">Lista de Turmas</a></li>
+        <li><a href="/listaAlunos">Lista de Alunos</a></li>
+    </ul>
+</nav>
+<div class="a">
+    <h1>Editar cadastro do Aluno</h1>
+    <form class="container" th:action="@{/editarAluno}" th:method="put">
+        <!-- Para o controller entender o metodo put -->
+        <input type="hidden" name="_method" value="put">
+        <!-- th:value para exebir no navegador -->
+        <input type="text" id="alunoId" name="alunoId" th:value="${aluno.id}" placeholder="ID do Aluno"/>
+        <input type="text" id="nome" name="nome" th:value="${aluno.nome}" placeholder="Nome do Aluno"/>
+
+
+
+        <div id="button">
+            <button type="submit" name="enviar">Adicionar Aluno</button>
+
+
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

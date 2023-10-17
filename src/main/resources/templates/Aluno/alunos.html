@@ -44,9 +44,17 @@
 				<td><span th:text="${aluno.id}"></span></td>
 				<td><span th:text="${aluno.nome}"></span></td>
 				<td><button><i class="fa-solid fa-book"></i></button></td>
-				<td><button><i class="fa-solid fa-pen"></i></button></td>
-				<td><button><i class="fas fa-trash-alt"></i></button></td>
-				
+
+				<form th:action="@{/formEditarAluno}" method="get">
+					<input type="hidden" name="id" th:value="${aluno.id}">
+					<td><button><i class="fa-solid fa-pen"></i></button></td>
+				</form>
+
+				<form th:action="@{/deletarAluno}" method="get">
+					<input type="hidden" name="id" th:value="${aluno.id}" />
+					<td><button><i class="fas fa-trash-alt"></i></button></td>
+				</form>
+
 			</tr>
 		</tbody>
 		
