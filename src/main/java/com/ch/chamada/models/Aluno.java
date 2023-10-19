@@ -15,8 +15,10 @@ public class Aluno {
 	
 	private String presenca;
 
-	@ManyToMany
+
+	@ManyToMany(mappedBy = "aluno", cascade = CascadeType.REMOVE)
 	private List<Turma> turma;
+
 	public Long getId() {
 		return id;
 	}

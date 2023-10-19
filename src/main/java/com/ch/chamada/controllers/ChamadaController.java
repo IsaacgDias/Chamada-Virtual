@@ -1,7 +1,11 @@
 package com.ch.chamada.controllers;
 
 import com.ch.chamada.service.AlunoService;
+import com.ch.chamada.service.TurmaService;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.OneToMany;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +32,9 @@ public class ChamadaController {
 
 	@Autowired
 	AlunoService alunoService;
+
+	@Autowired
+	TurmaService turmaService;
 
 
 	@RequestMapping("/")
@@ -96,6 +103,14 @@ public class ChamadaController {
 		alunoService.deletarAlunoPorId(id);
 		return "redirect:/";
 	}
+	@GetMapping("/encerrarTurma")
+	public String encerrarTurma(@RequestParam Long id) {
+		tr.desassociarAlunosDaTurma(id);
+		tr.desassociarTurmaDoAluno(id);
+		tr.deletarTurmaPorId(id);
+		return "redirect:/";
+	}
+
 
 	@GetMapping("/listaAlunos")
 	public ModelAndView listaAlunos() {

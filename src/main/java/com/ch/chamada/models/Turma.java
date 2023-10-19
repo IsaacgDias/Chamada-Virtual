@@ -27,9 +27,12 @@ public class Turma implements Serializable {
 	private String dataTermino;
 	
 	private String horario;
+
 	// Uma turma pode ter vários alunos
-	@ManyToMany
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	private List<Aluno> aluno;
+
+
 
 	public String getHorario() {
 		return horario;

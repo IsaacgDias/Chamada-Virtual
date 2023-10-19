@@ -35,7 +35,6 @@
 			<th>Inicio</th>
 			<th>Témino</th>
 			<th>Total de Alunos</th>
-			<th>Editar</th>
 			<th>Encerrar</th>
 		</tr>
 		</thead>
@@ -49,8 +48,13 @@
 				<td>01/12/2023</td>
 				<td>31/12/2023</td>
 				<td>93</td>
-				<td><button><i class="fa-solid fa-pen"></i></button></td>
-				<td><button><i class="fa-solid fa-rectangle-xmark"></i></button></td>
+
+					<form th:action="@{/encerrarTurma}" method="get">
+						<input type="hidden" name="id" th:value="${turma.id}" />
+						<td><button><i class="fas fa-trash-alt"></i></button></td>
+					</form>
+
+
 			</tr>
 		</tbody>
 		
