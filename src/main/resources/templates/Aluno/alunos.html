@@ -43,7 +43,12 @@
 			<tr th:each="aluno : ${alunos}">
 				<td><span th:text="${aluno.id}"></span></td>
 				<td><span th:text="${aluno.nome}"></span></td>
-				<td><button><i class="fa-solid fa-book"></i></button></td>
+
+				<form th:action="@{/turmasDoAluno}" method="get">
+					<input type="hidden" name="id" th:value="${aluno.id}">
+					<td><button><i class="fa-solid fa-book"></i></button></td>
+				</form>
+
 
 				<form th:action="@{/formEditarAluno}" method="get">
 					<input type="hidden" name="id" th:value="${aluno.id}">

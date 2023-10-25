@@ -25,4 +25,11 @@ public interface TurmaRepository extends JpaRepository<Turma, Long> {
     @Transactional
     @Query(value = "DELETE FROM turma WHERE id = ?", nativeQuery = true)
     void deletarTurmaPorId(Long turmaId);
+
+    @Modifying
+    @Transactional
+    @Query(value = "SELECT turma_id FROM turma_aluno WHERE aluno_id = ?", nativeQuery = true)
+    void turmasDoAluno(Long turmaId);
+
 }
+

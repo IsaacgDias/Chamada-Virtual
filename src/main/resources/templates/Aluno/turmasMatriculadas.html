@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Turmas Matriculadas por Aluno</h1>
+<span th:text="${aluno.id}"></span>
+
+<form th:action="@{/add-aluno-turma-matricula}" method="post">
+    <input type="hidden" name="alunoId" th:value="${aluno.id}">
+    <td><button><i class="fa-solid fa-pen"></i></button></td>
+</form>
+
+
+<table class="container tabelaAluno">
+
+    <thead>
+    <tr th:each="turma : ${aluno.turma}">
+        <td th:text="${turma.id}"></td>
+        <td th:text="${turma.nome}"></td>
+    </tr>
+    </thead>
+
+
+</table>
+</body>
+</html>

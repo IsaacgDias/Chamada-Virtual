@@ -24,6 +24,7 @@ import java.util.Optional;
 @Controller
 public class ChamadaController {
 
+	// INSTÂNÇIAS
 	@Autowired
 	private TurmaRepository tr;
 
@@ -36,7 +37,7 @@ public class ChamadaController {
 	@Autowired
 	TurmaService turmaService;
 
-
+	// CADASTROS ALUNOS E TURMAS
 	@RequestMapping("/")
 	public String index() {
 		return "index";
@@ -73,6 +74,20 @@ public class ChamadaController {
 		return "/add-aluno-turma";
 	}
 
+
+	// adiciona o aluno na turma pela lista de turmas do aluno
+	@PostMapping("/add-aluno-turma-matricula")
+	public String addAluno(Aluno aluno, @RequestParam("alunoId") Long alunoId, Model model) {
+		aluno.setId(alunoId);
+		model.addAttribute("aluno", aluno);
+		Iterable<Turma> turmas = tr.findAll();
+		model.addAttribute("turmas", turmas);
+
+		return "/add-aluno-turma";
+	}
+
+
+	// adiciona o aluno na turma
 	@PostMapping("/addAluno")
 	public String adicionarAlunoATurma(@RequestParam("alunoId") Long alunoId, @RequestParam("turmaId") Long turmaId) {
 		alunoService.associarAlunoATurma(alunoId, turmaId);
@@ -80,6 +95,7 @@ public class ChamadaController {
 		return "redirect:/";
 	}
 
+	// editar os dados dos alunos
 	@GetMapping("/formEditarAluno")
 	public String formEditarAluno(@RequestParam Long id, Model model) {
 		System.out.println("ID recebido: " + id);
@@ -97,7 +113,19 @@ public class ChamadaController {
 		return "redirect:/listaAlunos";
 	}
 
+	// turmas matriculadas
+	@GetMapping("/turmasDoAluno")
+	public String turmasDoAluno(@RequestParam Long id, Model model) {
+		Aluno aluno = ar.findById(id).orElse(null);
+		model.addAttribute("aluno", aluno);
 
+		return "Aluno/turmasMatriculadas";
+	}
+
+
+
+
+	// DELETAR E ENCERRAR
 	@GetMapping("/deletarAluno")
 	public String deletarAlunoPorId(@RequestParam Long id) {
 		alunoService.deletarAlunoPorId(id);
@@ -112,6 +140,7 @@ public class ChamadaController {
 	}
 
 
+	// Listas de todos os alunos e turmas
 	@GetMapping("/listaAlunos")
 	public ModelAndView listaAlunos() {
 		ModelAndView mv = new ModelAndView("Aluno/alunos");
@@ -133,54 +162,52 @@ public class ChamadaController {
 
 	}
 
-	@GetMapping("/presenca")
-	public ModelAndView presenca() {
-		ModelAndView mv = new ModelAndView("Turma/presenca");
-		Iterable<Turma> turmas = tr.findAll();
-		mv.addObject("turmas", turmas);
-		return mv;
-	}
-
-	@PostMapping("/fazerChamada")
-	public String fazerChamada(@RequestParam Long turmaId, Model model) {
-		Turma turma = tr.findById(turmaId).orElse(null);
-		if (turma != null) {
-			List<Aluno> alunos = turma.getAluno();
-			model.addAttribute("alunos", alunos);
-
-			model.addAttribute("nomeTurma", turma.getNome());
-
-		}
-		return "Turma/fazerChamada";
-	}
-
-	@Controller
-	public class PresencaController {
-
-		@Autowired
-		private AlunoRepository alunoRepository;
-
-		// ...
-
-		@PostMapping("/salvarPresenca")
-		public String salvarPresenca(@RequestParam Map<String, String> params) {
-			Long turmaId = Long.parseLong(params.get("turmaId"));
-			params.remove("turmaId");
-
-			for (Map.Entry<String, String> entry : params.entrySet()) {
-				String alunoIdStr = entry.getKey().replace("presenca_", "");
-				Long alunoId = Long.parseLong(alunoIdStr);
-				String presenca = entry.getValue();
-
-				Aluno aluno = alunoRepository.findById(alunoId).orElse(null);
-				if (aluno != null) {
-					aluno.setPresenca(presenca);
-					alunoRepository.save(aluno);
-				}
-			}
-
-			return "redirect:/presenca"; // Redireciona para a página de presença após salvar
-		}
-	}
-
+	// Fazer a chamada
+//	@GetMapping("/presenca")
+//	public ModelAndView presenca() {
+//		ModelAndView mv = new ModelAndView("Turma/presenca");
+//		Iterable<Turma> turmas = tr.findAll();
+//		mv.addObject("turmas", turmas);
+//		return mv;
+//	}
+//
+//	@PostMapping("/fazerChamada")
+//	public String fazerChamada(@RequestParam Long turmaId, Model model) {
+//		Turma turma = tr.findById(turmaId).orElse(null);
+//		if (turma != null) {
+//			List<Aluno> alunos = turma.getAluno();
+//			model.addAttribute("alunos", alunos);
+//
+//			model.addAttribute("nomeTurma", turma.getNome());
+//
+//		}
+//		return "Turma/fazerChamada";
+//	}
+//
+//		@Autowired
+//		private AlunoRepository alunoRepository;
+//
+//		// ...
+//
+//		@PostMapping("/salvarPresenca")
+//		public String salvarPresenca(@RequestParam Map<String, String> params) {
+//			Long turmaId = Long.parseLong(params.get("turmaId"));
+//			params.remove("turmaId");
+//
+//			for (Map.Entry<String, String> entry : params.entrySet()) {
+//				String alunoIdStr = entry.getKey().replace("presenca_", "");
+//				Long alunoId = Long.parseLong(alunoIdStr);
+//				String presenca = entry.getValue();
+//
+//				Aluno aluno = alunoRepository.findById(alunoId).orElse(null);
+//				if (aluno != null) {
+//					aluno.setPresenca(presenca);
+//					alunoRepository.save(aluno);
+//				}
+//			}
+//
+//			return "redirect:/presenca";
+//		}
 }
+
+
