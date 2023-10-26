@@ -11,18 +11,28 @@
 
 <form th:action="@{/add-aluno-turma-matricula}" method="post">
     <input type="hidden" name="alunoId" th:value="${aluno.id}">
-    <td><button><i class="fa-solid fa-pen"></i></button></td>
+    <td><button>Adicionar a turma</button></td>
 </form>
 
 
 <table class="container tabelaAluno">
 
     <thead>
+    <td>ID</td>
+    <td>Nome Turma</td>
+    </thead>
+    <tbody>
     <tr th:each="turma : ${aluno.turma}">
         <td th:text="${turma.id}"></td>
         <td th:text="${turma.nome}"></td>
+
+        <form th:action="@{/removerAlunoTurma}" method="post">
+            <input type="hidden" name="turmaId" th:value="${turma.id}">
+            <input type="hidden" name="alunoId" th:value="${aluno.id}">
+            <td><button>Remover turma</button></td>
+        </form>
     </tr>
-    </thead>
+    </tbody>
 
 
 </table>

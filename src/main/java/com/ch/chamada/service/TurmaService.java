@@ -25,4 +25,7 @@ public class TurmaService {
         return turmaOptional.orElse(null);
     }
 
+    public Turma findById(Long turmaId) {
+        return turmaRepository.findById(turmaId).orElse(null);
+    }
 }

@@ -122,13 +122,17 @@ public class ChamadaController {
 		return "Aluno/turmasMatriculadas";
 	}
 
-
-
-
 	// DELETAR E ENCERRAR
 	@GetMapping("/deletarAluno")
 	public String deletarAlunoPorId(@RequestParam Long id) {
-		alunoService.deletarAlunoPorId(id);
+		if (alunoService.AlunoNaoAssociadoATurmas(id)) {
+			// Se o aluno não estiver associado a nenhuma turma, exclua-o
+			alunoService.deletarAlunoPorId(id);
+		} else {
+			System.out.println("Aluno está associado a turma");
+			return "Aluno/msg-validacao";
+		}
+
 		return "redirect:/";
 	}
 	@GetMapping("/encerrarTurma")
@@ -138,7 +142,11 @@ public class ChamadaController {
 		tr.deletarTurmaPorId(id);
 		return "redirect:/";
 	}
-
+    @PostMapping("/removerAlunoTurma")
+    public String removerAlunoTurma(@RequestParam Long turmaId, @RequestParam Long alunoId) {
+       	ar.removerAlunoTurma(turmaId, alunoId);
+        return "redirect:/";
+    }
 
 	// Listas de todos os alunos e turmas
 	@GetMapping("/listaAlunos")
