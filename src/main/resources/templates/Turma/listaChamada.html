@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Alunos da Turma</title>
+</head>
+<body>
+<h1>Lista de Alunos da Turma</h1>
+
+<form action="/salvarPresenca" method="post">
+    <table>
+        <tr>
+            <th>Nome do Aluno</th>
+            <th>Presença</th>
+            <th>Falta</th>
+        </tr>
+
+        <tr th:each="aluno : ${alunos}">
+            <td th:text="${aluno.nome}"></td>
+            <td>
+                <input type="checkbox" name="presenca" th:value="${aluno.id}" th:checked="${aluno.presenca eq 'Presenca'}">
+                Presença
+            </td>
+            <td>
+                <input type="checkbox" name="falta" th:value="${aluno.id}" th:checked="${aluno.presenca eq 'Falta'}">
+                Falta
+            </td>
+        </tr>
+
+    </table>
+
+    <input type="hidden" name="nomeTurma" th:value="${nomeTurma}">
+    <input type="hidden" name="datalancamento" th:value="${dataLancamento}">
+    <input type="hidden" name="turmaId" th:value="${turmaId}">
+
+    <button type="submit">Salvar Presenças</button>
+</form>
+
+<h2>Turma Selecionada do id: <span th:text="${turmaId}"></span></h2>
+
+
+<p th:text="${nomeTurma}"></p>
+<p>Sala: <span th:text="${salaTurma}"></span>
+<p>Data de Lançamento: <span th:text="${dataLancamento}"></span>
+</body>
+</html>

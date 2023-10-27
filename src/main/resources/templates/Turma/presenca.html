@@ -25,19 +25,18 @@
 
 <div class="a">
     <h1>Chamada Virtual</h1>
-    <form class="container" action="/fazerChamada" method="post">
+    <form class="container" action="/listaChamada" method="post">
         <label>Selecione a turma</label>
         <select id="turmaId" name="turmaId">
-            <option th:each="turma : ${turmas}" th:value="${turma.id}" th:text="${turma.nome + ' - ' + ' Sala: '+ turma.sala}"></option>
+            <option th:each="turma : ${turmas}" th:value="${turma.id}" th:text="${turma.nome}" th:attr="sala-value=${turma.sala}"></option>
         </select>
 
+        <label for="dataLancamento">Data:</label>
+        <input type="text" id="dataLancamento" name="dataLancamento" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy">
 
 
-
-        <div id="button">
+        <div>
             <button type="submit" name="enviar">Finalizar</button>
-
-
         </div>
     </form>
 </div>

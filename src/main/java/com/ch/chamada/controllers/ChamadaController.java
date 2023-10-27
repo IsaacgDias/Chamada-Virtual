@@ -1,11 +1,10 @@
 package com.ch.chamada.controllers;
 
+import com.ch.chamada.models.Chamada;
+import com.ch.chamada.repository.ChamadaRepository;
 import com.ch.chamada.service.AlunoService;
 import com.ch.chamada.service.TurmaService;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.OneToMany;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +17,6 @@ import com.ch.chamada.repository.TurmaRepository;
 
 
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @Controller
 public class ChamadaController {
@@ -36,6 +33,9 @@ public class ChamadaController {
 
 	@Autowired
 	TurmaService turmaService;
+
+	@Autowired
+	ChamadaRepository chamadaRepository;
 
 	// CADASTROS ALUNOS E TURMAS
 	@RequestMapping("/")
@@ -159,7 +159,6 @@ public class ChamadaController {
 
 	}
 
-
 	@GetMapping("/listaTurmas")
 	public ModelAndView listaTurmas() {
 		ModelAndView mv = new ModelAndView("Turma/turmas");
@@ -171,51 +170,62 @@ public class ChamadaController {
 	}
 
 	// Fazer a chamada
-//	@GetMapping("/presenca")
-//	public ModelAndView presenca() {
-//		ModelAndView mv = new ModelAndView("Turma/presenca");
-//		Iterable<Turma> turmas = tr.findAll();
-//		mv.addObject("turmas", turmas);
-//		return mv;
-//	}
-//
-//	@PostMapping("/fazerChamada")
-//	public String fazerChamada(@RequestParam Long turmaId, Model model) {
-//		Turma turma = tr.findById(turmaId).orElse(null);
-//		if (turma != null) {
-//			List<Aluno> alunos = turma.getAluno();
-//			model.addAttribute("alunos", alunos);
-//
-//			model.addAttribute("nomeTurma", turma.getNome());
-//
-//		}
-//		return "Turma/fazerChamada";
-//	}
-//
-//		@Autowired
-//		private AlunoRepository alunoRepository;
-//
-//		// ...
-//
-//		@PostMapping("/salvarPresenca")
-//		public String salvarPresenca(@RequestParam Map<String, String> params) {
-//			Long turmaId = Long.parseLong(params.get("turmaId"));
-//			params.remove("turmaId");
-//
-//			for (Map.Entry<String, String> entry : params.entrySet()) {
-//				String alunoIdStr = entry.getKey().replace("presenca_", "");
-//				Long alunoId = Long.parseLong(alunoIdStr);
-//				String presenca = entry.getValue();
-//
-//				Aluno aluno = alunoRepository.findById(alunoId).orElse(null);
-//				if (aluno != null) {
-//					aluno.setPresenca(presenca);
-//					alunoRepository.save(aluno);
-//				}
-//			}
-//
-//			return "redirect:/presenca";
-//		}
+	@GetMapping("/presenca")
+	public ModelAndView presenca() {
+		ModelAndView mv = new ModelAndView("Turma/presenca");
+		Iterable<Turma> turmas = tr.findAll();
+		mv.addObject("turmas", turmas);
+		return mv;
+	}
+
+	@PostMapping("/listaChamada")
+	public String fazerChamada(@RequestParam Long turmaId, @RequestParam("dataLancamento") String dataLancamento, Model model) {
+		Turma turma = tr.findById(turmaId).orElse(null);
+		if (turma != null) {
+			List<Aluno> alunos = turma.getAluno();
+			model.addAttribute("alunos", alunos);
+			model.addAttribute("turmaId", turma.getId());
+			model.addAttribute("nomeTurma", turma.getNome());
+			model.addAttribute("dataLancamento", dataLancamento);
+			model.addAttribute("salaTurma", turma.getSala());
+		}
+		return "Turma/listaChamada";
+	}
+
+	@PostMapping("/salvarPresenca")
+	public String salvarPresenca(@RequestParam("turmaId") Long turmaId,
+								 @RequestParam("datalancamento") String datalancamento,
+								 @RequestParam(value = "presenca", required = false) List<Long> presencaIds,
+								 @RequestParam(value = "falta", required = false) List<Long> faltaIds) { // falta opcional
+
+		// Verificar se há alunos com presença marcada
+		if (presencaIds != null && !presencaIds.isEmpty()) {
+			// Para cada aluno que teve presença marcada
+			for (Long alunoId : presencaIds) {
+				Chamada chamada = new Chamada();
+				chamada.setTurmaId(turmaId);
+				chamada.setDataLancamento(datalancamento);
+				chamada.setAlunoId(alunoId);
+				chamada.setPresenca("Presença"); // Define a presença
+				chamadaRepository.save(chamada);
+			}
+		}
+
+		// Verificar se há alunos com falta marcada
+		if (faltaIds != null && !faltaIds.isEmpty()) {
+			// Para cada aluno que teve falta marcada
+			for (Long alunoId : faltaIds) {
+				Chamada chamada = new Chamada();
+				chamada.setTurmaId(turmaId);
+				chamada.setDataLancamento(datalancamento);
+				chamada.setAlunoId(alunoId);
+				chamada.setPresenca("Falta"); // Define a falta
+				chamadaRepository.save(chamada);
+			}
+		}
+
+		return "redirect:/";
+	}
 }
 
 
