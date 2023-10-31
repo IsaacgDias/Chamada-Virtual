@@ -30,10 +30,10 @@
 <div class="center">
 <form method="post" action="/addAluno">
     <h3>Adicionar aluno em uma turma?</h3>
-    <label>
+    <h4 th:text="${aluno.nome}"></h4>
 
-        <input type="hidden" name="alunoId" th:value="${aluno.id}" />
-        <td th:text="${aluno.nome}"></label>
+    <input type="hidden" name="alunoId" th:value="${aluno.id}" />
+
     <label>Selecione a turma</label>
     <select name="turmaId" required>
         <option value="">--SELECIONE--</option>

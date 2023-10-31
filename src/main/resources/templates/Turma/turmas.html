@@ -31,23 +31,19 @@
 			<th>Sala</th>
 			<th>Turno</th>
 			<th>Disciplina</th>
-			<th>Carga Horária</th>
 			<th>Inicio</th>
 			<th>Témino</th>
-			<th>Total de Alunos</th>
 			<th>Encerrar</th>
 		</tr>
 		</thead>
 		<tbody>
 			<tr th:each="turma : ${turmas}">
-				<td>TUR03212</td>
-				<td>122</td>
-				<td>Noite</td>
+				<td><span th:text="${turma.id}"></span></td>
+				<td><span th:text="${turma.sala}"></span></td>
+				<td><span th:text="${turma.turno}"></span></td>
 				<td><span th:text="${turma.nome}"></span></td>
-				<td>80</td>
-				<td>01/12/2023</td>
-				<td>31/12/2023</td>
-				<td>93</td>
+				<td><span th:text="${turma.dataInicio}"></span></td>
+				<td><span th:text="${turma.dataTermino}"></span></td>
 
 					<form th:action="@{/encerrarTurma}" method="get">
 						<input type="hidden" name="id" th:value="${turma.id}" />

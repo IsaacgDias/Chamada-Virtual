@@ -92,13 +92,12 @@ public class ChamadaController {
 	public String adicionarAlunoATurma(@RequestParam("alunoId") Long alunoId, @RequestParam("turmaId") Long turmaId) {
 		alunoService.associarAlunoATurma(alunoId, turmaId);
 
-		return "redirect:/";
+		return "redirect:/listaAlunos";
 	}
 
 	// editar os dados dos alunos
 	@GetMapping("/formEditarAluno")
 	public String formEditarAluno(@RequestParam Long id, Model model) {
-		System.out.println("ID recebido: " + id);
 		Aluno aluno = ar.findById(id).orElse(null);
 		System.out.println("ESSE ALUNO: " + aluno.getId() + "aa" + aluno.getNome());
 		model.addAttribute("aluno", aluno);
@@ -136,23 +135,23 @@ public class ChamadaController {
 			// Se o aluno não estiver associado a nenhuma turma, exclua-o
 			alunoService.deletarAlunoPorId(id);
 		} else {
-			System.out.println("Aluno está associado a turma");
 			return "Aluno/msg-validacao";
 		}
 
-		return "redirect:/";
+		return "redirect:/listaAlunos";
 	}
 	@GetMapping("/encerrarTurma")
 	public String encerrarTurma(@RequestParam Long id) {
 		tr.desassociarAlunosDaTurma(id);
 		tr.desassociarTurmaDoAluno(id);
 		tr.deletarTurmaPorId(id);
-		return "redirect:/";
+		return "redirect:/listaTurmas";
 	}
     @PostMapping("/removerAlunoTurma")
     public String removerAlunoTurma(@RequestParam Long turmaId, @RequestParam Long alunoId) {
        	ar.removerAlunoTurma(turmaId, alunoId);
-        return "redirect:/";
+
+        return "redirect:/listaAlunos";
     }
 
 	// Listas de todos os alunos e turmas

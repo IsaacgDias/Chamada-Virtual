@@ -25,22 +25,23 @@
     <h1>Cadastro de Turma</h1>
     <form class="container" method="post">
         <div class="input-field">
-            <input type="text" name="nome" placeholder="Nome"/>
+            <input type="text" name="nome" placeholder="Nome" required/>
         </div>
         <div class="input-field">
             <input type="text" name="cargaHoraria" placeholder="Carga Horária"/>
         </div>
         <div class="input-field">
-            <input type="text" name="sala" placeholder="Sala"/>
+            <input type="text" name="sala" placeholder="Sala" required/>
         </div>
         <div class="input-field">
-            <input type="text" name="turno" placeholder="Turno"/>
+            <input type="text" name="turno" placeholder="Turno" required/>
         </div>
         <div class="input-field">
-            <input type="text" name="dataInicio" placeholder="Data de Início"/>
+            <input type="text" name="dataInicio" pattern="\d{2}/\d{2}/\d{4}" placeholder="Data de Início  (dd/mm/yyyy)" required/>
+
         </div>
         <div class="input-field">
-            <input type="text" name="dataTermino" placeholder="Data de Término"/>
+            <input type="text" name="dataTermino" pattern="\d{2}/\d{2}/\d{4}" placeholder="Data de Término (dd/mm/yyyy)" required/>
         </div>
         <div class="hora">
             Horário: <select name="horario">
@@ -53,6 +54,7 @@
         </div>
 
         <button class=button type="submit" name="enviar">Adicionar Turma</button>
+    </form>
 </div>
 
 </body>
