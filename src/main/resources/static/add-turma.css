@@ -1,0 +1,45 @@
+.container {
+    margin: auto;
+    border: 1px solid #000;
+    border-radius: 30px;
+    width: 700px;
+    height: 230px;
+}
+h3 {
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+    margin-top: 50px;
+}
+
+button {
+    text-decoration: none;
+    background-color:rgba(92, 94, 93);
+    border-radius: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 0px solid #0e0e0e;
+    color: #fff;
+    width: 120px;
+    height: 30px;
+    cursor: pointer;
+}
+
+button > a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.voltar {
+    margin-top: 15px;
+}
+
+label {
+    font-size: 22px;
+
+}
+
+select {
+    height: 42px;
+}

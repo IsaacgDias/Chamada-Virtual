@@ -107,9 +107,16 @@ public class ChamadaController {
 	}
 
 	@PutMapping("/editarAluno")
-	public String editarAluno(Aluno aluno) {
-		ar.save(aluno);
+	public String editarAluno(@RequestParam Long alunoId, @ModelAttribute Aluno aluno) {
+		if (alunoId != null) {
+			Aluno alunoExistente = ar.findById(alunoId).orElse(null);
 
+			if (alunoExistente != null) {
+				alunoExistente.setNome(aluno.getNome());
+
+				ar.save(alunoExistente);
+			}
+		}
 		return "redirect:/listaAlunos";
 	}
 

@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="ListaAluno.css">
     <link rel="stylesheet" href="paginas.css">
+    <link rel="stylesheet" href="add-turma.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Menu</title>
 
@@ -19,14 +19,15 @@
     <ul>
         <li><a href="/cadastrarAluno">Cadastrar Aluno</a></li>
         <li><a href="/cadastrarTurma">Cadastrar Turma</a></li>
-        <li><a href="#">Dar Presença</a></li>
+        <li><a href="/presenca">Dar Presença</a></li>
         <li><a href="/listaTurmas">Lista de Turmas</a></li>
-        <li><a href="#" class="active">Lista de Alunos</a></li>
+        <li><a href="/listaAlunos">Lista de Alunos</a></li>
     </ul>
 </nav>
 <h1>Alunos</h1>
-<span th:text="${alunoId}"></span>
-<table class="container tabelaAluno">
+
+<div class="container">
+<div class="center">
 <form method="post" action="/addAluno">
     <h3>Adicionar aluno em uma turma?</h3>
     <label>
@@ -34,15 +35,16 @@
         <input type="hidden" name="alunoId" th:value="${aluno.id}" />
         <td th:text="${aluno.nome}"></label>
     <label>Selecione a turma</label>
-    <select name="turmaId">
+    <select name="turmaId" required>
+        <option value="">--SELECIONE--</option>
         <option th:each="turma : ${turmas}" th:value="${turma.id}" th:text="${turma.nome + ' - ' + ' Sala: '+ turma.sala}"></option>
     </select>
     <button>Adicionar</button>
-    <button><a href="/">Agora não</a></button>
+
 </form>
-
-</table>
-
+    <button class="voltar"><a href="/">Agora não</a></button>
+</div>
+</div>
 </body>
 
 </html>

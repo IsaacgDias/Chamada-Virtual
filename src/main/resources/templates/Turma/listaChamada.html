@@ -5,12 +5,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Alunos da Turma</title>
+    <link rel="stylesheet" href="paginas.css">
+    <link rel="stylesheet" href="listaChamada.css">
 </head>
 <body>
-<h1>Lista de Alunos da Turma</h1>
+<header>
+    <a href="/"><img src="img/img_logo.jpg" alt="" width="100px" height="100px"></a>
+</header>
+<nav>
+    <ul>
+        <li><a href="/cadastrarAluno">Cadastrar Aluno</a></li>
+        <li><a href="/cadastrarTurma">Cadastrar Turma</a></li>
+        <li><a href="/presenca">Dar Presença</a></li>
+        <li><a href="/listaTurmas">Lista de Turmas</a></li>
+        <li><a href="/listaAlunos">Lista de Alunos</a></li>
+    </ul>
+</nav>
+
+<h1>Lista de presença</h1>
+
+<div class="center">
+    <ul class="row">
+        <li><h4 th:text="${nomeTurma}"></h4></li>
+        <li><h4>Sala: <span th:text="${salaTurma}"></span></h4></li>
+        <li> <h4>Data de Lançamento: <span th:text="${dataLancamento}"></span></h4></li>
+    </ul>
+
+</div>
 
 <form action="/salvarPresenca" method="post">
-    <table>
+    <table class="container tabelaAluno">
         <tr>
             <th>Nome do Aluno</th>
             <th>Presença</th>
@@ -19,6 +43,7 @@
 
         <tr th:each="aluno : ${alunos}">
             <td th:text="${aluno.nome}"></td>
+
             <td>
                 <input type="checkbox" name="presenca" th:value="${aluno.id}" th:checked="${aluno.presenca eq 'Presenca'}">
                 Presença
@@ -38,11 +63,5 @@
     <button type="submit">Salvar Presenças</button>
 </form>
 
-<h2>Turma Selecionada do id: <span th:text="${turmaId}"></span></h2>
-
-
-<p th:text="${nomeTurma}"></p>
-<p>Sala: <span th:text="${salaTurma}"></span>
-<p>Data de Lançamento: <span th:text="${dataLancamento}"></span>
 </body>
 </html>

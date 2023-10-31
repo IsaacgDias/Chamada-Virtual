@@ -1,0 +1,61 @@
+.center {
+    width: 200px;
+    margin: auto;
+    text-align: center;
+}
+.tabelaAluno {
+    width: 700px;
+    margin: auto;
+    border-collapse: collapse;
+
+}
+
+.tabelaAluno th,
+.tabelaAluno td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.tabelaAluno th {
+    background-color: #f2f2f2;
+}
+
+.tabelaAluno tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tabelaAluno tr:hover {
+    background-color: #ddd;
+}
+
+form {
+    text-align: center;
+}
+
+button {
+    margin-top: 30px;
+    width: 200px;
+    height: 50px;
+    background-color:rgba(92, 94, 93);
+    border-radius: 30px;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 0px solid #0e0e0e;
+    color: #fff;
+    text-align: center;
+}
+
+.row {
+  list-style: none;
+  padding: 0;
+}
+
+.row li {
+  margin: 10px 0;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: bold;
+}

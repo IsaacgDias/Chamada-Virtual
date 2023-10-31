@@ -4,37 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="turmasMatriculadas.css">
+    <link rel="stylesheet" href="paginas.css">
 </head>
 <body>
-<h1>Turmas Matriculadas por Aluno</h1>
-<span th:text="${aluno.id}"></span>
+<header>
+    <a href="/"><img src="img/img_logo.jpg" alt="" width="100px" height="100px"></a>
+</header>
+<nav>
+    <ul>
+        <li><a href="/cadastrarAluno">Cadastrar Aluno</a></li>
+        <li><a href="/cadastrarTurma">Cadastrar Turma</a></li>
+        <li><a href="/presenca">Dar Presença</a></li>
+        <li><a href="/listaTurmas">Lista de Turmas</a></li>
+        <li><a href="/listaAlunos">Lista de Alunos</a></li>
+    </ul>
+</nav>
+<div class="caixa-container">
+
+<h2>Turmas matriculadas</h2>
+
+<h3>Nome do aluno: <span th:text="${aluno.nome}"></span></h3>
 
 <form th:action="@{/add-aluno-turma-matricula}" method="post">
     <input type="hidden" name="alunoId" th:value="${aluno.id}">
-    <td><button>Adicionar a turma</button></td>
+    <td><button>Adicionar em uma nova turma</button></td>
 </form>
 
+    <h3 class="h3-turmas">Turmas do aluno</h3>
+    <table class="table-turmas">
 
-<table class="container tabelaAluno">
-
-    <thead>
-    <td>ID</td>
-    <td>Nome Turma</td>
-    </thead>
     <tbody>
     <tr th:each="turma : ${aluno.turma}">
-        <td th:text="${turma.id}"></td>
-        <td th:text="${turma.nome}"></td>
+        <td th:text="${turma.id}"><p></p></td>
+        <td th:text="${turma.nome}"><p></p></td>
 
         <form th:action="@{/removerAlunoTurma}" method="post">
             <input type="hidden" name="turmaId" th:value="${turma.id}">
             <input type="hidden" name="alunoId" th:value="${aluno.id}">
-            <td><button>Remover turma</button></td>
+            <td><button>Remover</button></td>
         </form>
     </tr>
     </tbody>
-
-
-</table>
+    </table>
+</div>
 </body>
 </html>

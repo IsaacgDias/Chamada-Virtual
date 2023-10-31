@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="paginas.css">
-    <title>Cadastrar Aluno</title>
+    <title>Editar aluno</title>
 </head>
 <body>
 <header>
@@ -15,28 +15,26 @@
 </header>
 <nav>
     <ul>
-        <li><a href="#" class="active">Cadastrar Aluno</a></li>
+        <li><a href="/cadastrarAluno">Cadastrar Aluno</a></li>
         <li><a href="/cadastrarTurma">Cadastrar Turma</a></li>
-        <li><a href="#">Dar Presença</a></li>
+        <li><a href="/presenca">Dar Presença</a></li>
         <li><a href="/listaTurmas">Lista de Turmas</a></li>
         <li><a href="/listaAlunos">Lista de Alunos</a></li>
     </ul>
 </nav>
-<div class="a">
+<div class="a-edit-aluno">
     <h1>Editar cadastro do Aluno</h1>
     <form class="container" th:action="@{/editarAluno}" th:method="put">
         <!-- Para o controller entender o metodo put -->
         <input type="hidden" name="_method" value="put">
         <!-- th:value para exebir no navegador -->
-        <input type="text" id="alunoId" name="alunoId" th:value="${aluno.id}" placeholder="ID do Aluno"/>
+        <input class="inp" type="text" id="exibir" name="exibir" th:value="${'ID do aluno: ' + aluno.id}" readonly/>
         <input type="text" id="nome" name="nome" th:value="${aluno.nome}" placeholder="Nome do Aluno"/>
 
-
+        <input type="hidden" id="alunoId" name="alunoId" th:value="${aluno.id}"/>
 
         <div id="button">
-            <button type="submit" name="enviar">Adicionar Aluno</button>
-
-
+            <button type="submit" name="enviar">Editar aluno</button>
         </div>
     </form>
 </div>

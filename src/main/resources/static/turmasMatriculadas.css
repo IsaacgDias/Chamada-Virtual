@@ -1,0 +1,41 @@
+.caixa-container {
+    margin: auto;
+    width: 700px;
+    height: auto;
+    padding: 20px;
+    border: 1px solid #000;
+    margin-top: 200px;
+    border-radius: 20px;
+}
+
+.add {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.table-turmas {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table-turmas, th, td {
+    border: 1px solid #ccc;
+}
+
+.table-turmas, th, td {
+    font-size: 20px;
+    text-align: center;
+}
+
+.h3-turmas, h2 {
+    text-align: center;
+}
+
+button {
+    height: 37px;
+    width: 130px;
+    cursor: pointer;
+}
+

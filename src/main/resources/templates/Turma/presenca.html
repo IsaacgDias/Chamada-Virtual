@@ -17,8 +17,8 @@
     <ul>
         <li><a href="/cadastrarAluno">Cadastrar Aluno</a></li>
         <li><a href="/cadastrarTurma">Cadastrar Turma</a></li>
-        <li><a href="#">Dar Presença</a></li>
-        <li><a href="#" class="active">Lista de Turmas</a></li>
+        <li><a href="#" class="active">Dar Presença</a></li>
+        <li><a href="/listaTurmas" >Lista de Turmas</a></li>
         <li><a href="/listaAlunos">Lista de Alunos</a></li>
     </ul>
 </nav>
@@ -27,12 +27,13 @@
     <h1>Chamada Virtual</h1>
     <form class="container" action="/listaChamada" method="post">
         <label>Selecione a turma</label>
-        <select id="turmaId" name="turmaId">
+        <select id="turmaId" name="turmaId" required>
+            <option value="">--Selecione--</option>
             <option th:each="turma : ${turmas}" th:value="${turma.id}" th:text="${turma.nome}" th:attr="sala-value=${turma.sala}"></option>
         </select>
 
         <label for="dataLancamento">Data:</label>
-        <input type="text" id="dataLancamento" name="dataLancamento" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy">
+        <input type="text" id="dataLancamento" name="dataLancamento" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" required>
 
 
         <div>
